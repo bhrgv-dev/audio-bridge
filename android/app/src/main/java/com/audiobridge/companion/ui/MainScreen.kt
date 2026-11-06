@@ -57,14 +57,14 @@ fun MainScreen(viewModel: BridgeViewModel, activity: Activity) {
 
             OutlinedTextField(
                 value = ip,
-                onValueChange = viewModel::setIp,
+                onValueChange = { ip = it },
                 label = { Text("Laptop IP") },
                 modifier = Modifier.fillMaxWidth(),
                 colors = darkFieldColors()
             )
             OutlinedTextField(
                 value = port,
-                onValueChange = viewModel::setPort,
+                onValueChange = { port = it },
                 label = { Text("Port") },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 modifier = Modifier.fillMaxWidth(),
@@ -72,7 +72,7 @@ fun MainScreen(viewModel: BridgeViewModel, activity: Activity) {
             )
             OutlinedTextField(
                 value = token,
-                onValueChange = viewModel::setToken,
+                onValueChange = { token = it },
                 label = { Text("Pairing Token") },
                 visualTransformation = PasswordVisualTransformation(),
                 modifier = Modifier.fillMaxWidth(),
@@ -80,7 +80,7 @@ fun MainScreen(viewModel: BridgeViewModel, activity: Activity) {
             )
             OutlinedTextField(
                 value = deviceName,
-                onValueChange = viewModel::setDeviceName,
+                onValueChange = { deviceName = it },
                 label = { Text("Device Name") },
                 modifier = Modifier.fillMaxWidth(),
                 colors = darkFieldColors()

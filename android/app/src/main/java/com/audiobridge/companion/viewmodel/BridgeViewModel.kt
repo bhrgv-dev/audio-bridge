@@ -38,11 +38,6 @@ class BridgeViewModel(app: android.app.Application) : AndroidViewModel(app) {
         }
     }
 
-    fun setIp(v: String) { ip = v }
-    fun setPort(v: String) { port = v }
-    fun setToken(v: String) { token = v }
-    fun setDeviceName(v: String) { deviceName = v }
-
     fun saveSettings() {
         prefs.setIp(ip)
         prefs.setPort(port.toIntOrNull() ?: 8766)
