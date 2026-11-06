@@ -20,10 +20,6 @@ import com.audiobridge.companion.viewmodel.BridgeViewModel
 
 @Composable
 fun MainScreen(viewModel: BridgeViewModel, activity: Activity) {
-    val ip = viewModel.ip
-    val port = viewModel.port
-    val token = viewModel.token
-    val deviceName = viewModel.deviceName
     val networkMessage = viewModel.networkMessage
     val captureStatus = viewModel.captureStatus
 
@@ -56,31 +52,31 @@ fun MainScreen(viewModel: BridgeViewModel, activity: Activity) {
             StatusCard("Capture", captureStatus)
 
             OutlinedTextField(
-                value = ip,
-                onValueChange = { ip = it },
+                value = viewModel.ip,
+                onValueChange = { viewModel.ip = it },
                 label = { Text("Laptop IP") },
                 modifier = Modifier.fillMaxWidth(),
                 colors = darkFieldColors()
             )
             OutlinedTextField(
-                value = port,
-                onValueChange = { port = it },
+                value = viewModel.port,
+                onValueChange = { viewModel.port = it },
                 label = { Text("Port") },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 modifier = Modifier.fillMaxWidth(),
                 colors = darkFieldColors()
             )
             OutlinedTextField(
-                value = token,
-                onValueChange = { token = it },
+                value = viewModel.token,
+                onValueChange = { viewModel.token = it },
                 label = { Text("Pairing Token") },
                 visualTransformation = PasswordVisualTransformation(),
                 modifier = Modifier.fillMaxWidth(),
                 colors = darkFieldColors()
             )
             OutlinedTextField(
-                value = deviceName,
-                onValueChange = { deviceName = it },
+                value = viewModel.deviceName,
+                onValueChange = { viewModel.deviceName = it },
                 label = { Text("Device Name") },
                 modifier = Modifier.fillMaxWidth(),
                 colors = darkFieldColors()
