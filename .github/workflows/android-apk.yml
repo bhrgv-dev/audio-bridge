@@ -1,0 +1,53 @@
+name: Android APK Build
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+  workflow_dispatch:
+
+jobs:
+  build-apk:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'microsoft'
+          java-version: '17'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v4
+        with:
+          packages: platforms;android-34 build-tools;34.0.0 platform-tools
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v6
+        with:
+          gradle-version: wrapper
+
+      - name: Build APK Debug
+        working-directory: ./android
+        run: .\gradlew.bat assembleDebug
+
+      - name: Verify APK exists
+        working-directory: ./android
+        run: |
+          if (-not (Test-Path "app/build/outputs/apk/debug/app-debug.apk")) {
+            Write-Error "APK not found at app/build/outputs/apk/debug/app-debug.apk"
+            exit 1
+          }
+          $apkSize = (Get-Item "app/build/outputs/apk/debug/app-debug.apk").Length
+          Write-Host "APK found: app/build/outputs/apk/debug/app-debug.apk ($apkSize bytes)"
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: audio-bridge-apk
+          path: ./android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error

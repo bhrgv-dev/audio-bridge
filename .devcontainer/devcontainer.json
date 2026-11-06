@@ -1,0 +1,29 @@
+{
+  "name": "AUDIO BRIDGE Android Development",
+  "image": "mcr.microsoft.com/vscode/devcontainers/android:1",
+  "installsAfter": [
+    "pip install pytest",
+    "pip install oxlint"
+  ],
+  "postStartCommand": "echo 'Android Codespace ready — use ./gradlew assembleDebug to build APK'",
+  "postCreateCommand": "if [ -f android/gradlew ]; then chmod +x android/gradlew; fi",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscode.android.Android",
+        "ms-android.vscode-Aar",
+        "ms-android.vscode-apk",
+        "GitHub.vscode-github-actions"
+      ]
+    }
+  },
+  "forwardPorts": [],
+  "postCreateCommands": [
+    "echo '=== AUDIO BRIDGE Codespace Setup ==='",
+    "echo 'Project root: E:\\\\tws'",
+    "echo 'Android build: ./gradlew assembleDebug'",
+    "echo 'Backend tests: .venv\\\\Scripts\\\\python -m pytest -v'",
+    "echo 'Frontend dev: cd \\\\..\\\\frontend && npm.cmd run dev'",
+    "echo '======================================='"
+  ]
+}
