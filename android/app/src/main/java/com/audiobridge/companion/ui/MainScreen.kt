@@ -20,12 +20,12 @@ import com.audiobridge.companion.viewmodel.BridgeViewModel
 
 @Composable
 fun MainScreen(viewModel: BridgeViewModel, activity: Activity) {
-    val ip by viewModel.ip
-    val port by viewModel.port
-    val token by viewModel.token
-    val deviceName by viewModel.deviceName
-    val networkMessage by viewModel.networkMessage
-    val captureStatus by viewModel.captureStatus
+    val ip = viewModel.ip
+    val port = viewModel.port
+    val token = viewModel.token
+    val deviceName = viewModel.deviceName
+    val networkMessage = viewModel.networkMessage
+    val captureStatus = viewModel.captureStatus
 
     val projectionManager = activity.getSystemService(MediaProjectionManager::class.java)
     val launcher = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->

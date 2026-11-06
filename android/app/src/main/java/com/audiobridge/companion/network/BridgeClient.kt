@@ -12,7 +12,8 @@ import okhttp3.Request
 import okhttp3.Response
 import okhttp3.WebSocket
 import okhttp3.WebSocketListener
-import okio.ByteString
+import okio.toByteString
+
 import org.json.JSONObject
 import java.util.concurrent.TimeUnit
 
@@ -50,7 +51,7 @@ class BridgeClient(
         val s = socket ?: return
         if (!connected) return
         val packet = PacketPacker.pack(pcm, seq++, System.currentTimeMillis(), 2)
-        s.send(ByteString.of(packet, 0, packet.size))
+        s.send(packet.toByteString())
         if (seq < 0) seq = 0
     }
 

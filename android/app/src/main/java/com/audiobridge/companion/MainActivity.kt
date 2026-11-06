@@ -1,10 +1,11 @@
 package com.audiobridge.companion
 
 import android.app.Application
+import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.ui.platform.setViewContentObserver
 import com.audiobridge.companion.ui.MainScreen
+import com.audiobridge.companion.ui.theme.AudioBridgeTheme
 import com.audiobridge.companion.viewmodel.BridgeViewModel
 
 class MainActivity : ComponentActivity() {
